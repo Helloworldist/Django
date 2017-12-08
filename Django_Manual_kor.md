@@ -4,13 +4,13 @@
 [장고 공식 홈페이지](https://www.djangoproject.com "장고 공식 홈페이지 바로가기")
 
 ***
-## Django의 개요
+## **Django의 개요**
 Django는 파이썬으로 작성된 **오픈소스 웹 어플리케이션 프레임워크**입니다.
 일반적으로 웹 브라우저 또는 웹 서버는 데이터베이스에서의 데이터 연결 및 판독을 하지 못합니다.
 이러한 것을 해소하기 위해서는 웹과 데이터베이스 미들웨어를 사용하면 되지만, 현재 우리는 더욱 똑똑한 오픈 소스가 있습니다.
 장고의 주된 목표는 **고도의 데이터베이스 기반 웹사이트 작성에 있어서 수고를 더는 것** 입니다.
 ***
-## 목 차
+## **목 차**
 1. 시작하기에 앞서...
 
 2. Django 시작하기
@@ -35,7 +35,7 @@ Django는 **파이썬**으로 사용되는 오픈소스입니다.
 Django project 를 구성하는 코드를 자동 생성해야 하는데, 이 과정에서 데이터베이스 설정, Django 위한 옵션들, 어플리케이션을 위한 설정들과 같은 Django 인스턴스를 구성하는 수많은 설정들이 생성되기 때문입니다.
 우선 커맨드라인에서 코드를 저장할 디렉토리로 이동한 후 다음 명령어를 실행합니다.
 ~~~~
-django-admin startproject mysite
+$ django-admin startproject mysite
 ~~~~
 Python 이나 Django 에서 사용중인 이름은 피해야 합니다.
 특히, django (Django 그 자체와 충돌이 일어남, 대소문자를 구별하지 않음) 나, test (Python 패키지의 이름중 하나) 같은 이름은 피해야 한다는 의미입니다.
@@ -108,7 +108,7 @@ Django는 app의 기본 디렉토리 구조를 자동으로 생성할수 있는 
 **proejct**는 이런 특정 웹사이트를 위한 app들과 설정들을 합한것입니다.
 다시 말하면 project는 여러 개의 app을 포함 할수 있습니다.
 
-그렇다면 이제 app을 생성해 봅시다. 간단한 설문조사 app을 만들어 봅시다. app을 생성하기 위해서는 ```manage.py```가 존재하는 디렉토리에서 다음 명령어를 입력합니다.
+그렇다면 이제 app을 생성해 볼건데 예제로 간단한 설문조사 app을 만들어 봅시다. app을 생성하기 위해서는 ```manage.py```가 존재하는 디렉토리에서 다음 명령어를 입력합니다.
 ~~~~
 $ python manage.py startapp polls
 ~~~~
@@ -336,7 +336,7 @@ Password: "비밀번호"
 커맨드 창 위에서 위와 같이 작성해 줍니다.
 그리고 서버를 켜기 위해 다음 명령을 실행합니다.
 ~~~~
-$python manage.py runserver
+$ python manage.py runserver
 ~~~~
 그리고 웹 브라우져 주소창에  http://127.0.0.1:8000/admin/ 또는 localhost:8000/(포트를 변경 했다면 변경한 포트 입력)으로 들어갑니다.
 
@@ -542,7 +542,7 @@ polls/index.html template에 링크를 적으면, 다음과 같은 하드코딩�
 
 이렇게 코드르 작성하게 되면 url을 바꾸게 될 때 template에서 코드 수정을 하는게 아니라 polls.urls.py에서 수정하시면 됩니다.
 
-한가지 더 맨 처음 말했듯이 하나의 project에는 여러 개의 app이 들어가지만 url의 이름을 같게 만들어야 할 상황이 있을수도 있습니다.  
+한가지 더 맨 처음 말했듯이 하나의 project에는 여러 개의 app이 들어가지만 url의 이름을 같게 만들어야 할 상황이 있을수도 있습니다.
 그럴때에는 URLconf에 namespace를 추가해주는 것입니다. 아래 코드를 작성해 주세요.
 
 **경로 : polls/urls.py**
@@ -594,19 +594,19 @@ polls/detail.html 폼을 아래 처럼 HTML 요소인 <form>태그를 추가 해
 </form>
 ~~~~
 
-위의 템플릿은 각 질문 선택 항목에 대한 라디오 버튼을 표시합니다.  
-각 라디오 버튼의 value 는 연관된 질문 선택 항목의 ID입니다.  
-각 라디오 버튼의 name 은 "choice"입니다.  
+위의 템플릿은 각 질문 선택 항목에 대한 라디오 버튼을 표시합니다.
+각 라디오 버튼의 value 는 연관된 질문 선택 항목의 ID입니다.
+각 라디오 버튼의 name 은 "choice"입니다.
 즉, 누군가가 라디오 버튼 중 하나를 선택하여 폼을 제출하면, POST 데이터 인 choice=#을 보낼 것입니다. 여기서 #은 선택한 항목의 ID입니다. 이것은 HTML 폼의 기본 개념입니다.
 
-폼의 action을 {% url 'polls:vote' question.id %}로 설정하고, method="post" 로 설정하였습니다.  
-이 폼을 전송하는 행위는 서버측 자료를 변경할 것이므로, method="post" (method="get" 와 반대로) 를 사용하는 것은 매우 중요합니다.  
-서버 측 자료를 변경하는 폼을 작성할 때마다, method="post" 를 사용하세요.  
+폼의 action을 {% url 'polls:vote' question.id %}로 설정하고, method="post" 로 설정하였습니다.
+이 폼을 전송하는 행위는 서버측 자료를 변경할 것이므로, method="post" (method="get" 와 반대로) 를 사용하는 것은 매우 중요합니다.
+서버 측 자료를 변경하는 폼을 작성할 때마다, method="post" 를 사용하세요.
 _(이 팁은 Django에만 국한되지 않음 / 웹 개발 시의 권장사항)_
 
 forloop.counter 는 for 태그가 반복을 한 횟수를 나타냅니다.
 
-우리는 POST 폼(자료를 수정하는 효과를 가진)을 만들고 있으므로, 사이트 간 요청 위조 (Cross Site Request Forgeries)에 대해 고민해야합니다.  
+우리는 POST 폼(자료를 수정하는 효과를 가진)을 만들고 있으므로, 사이트 간 요청 위조 (Cross Site Request Forgeries)에 대해 고민해야합니다.
 고맙게도, Django는 사이트 간 요청 위조(CSRF)에 대항하기위한 사용하기 쉬운 시스템을 가지고 있기 때문에, 너무 심각하게 고민할 필요가 없습니다. 간단히 말하면, 내부 URL들을 향하는 모든 POST 폼에 템플릿 태그 {% csrf_token %}를 사용하면됩니다.
 
 그럼 이제 부터는 입력받은 데이터를 처리하고 그 데이터를 이용하는 view를 작성해보겠습니다.
@@ -677,7 +677,7 @@ return render(request, 'polls/results.html', {'question': question})
 ## **8. 제네릭 뷰 사용**
 제네릭 뷰를 사용해 봅시다.
 
-지금까지 만들었던 뷰들은 매우 간단한 뷰들입니다. 그리고 중복이 되는 부분이 있습니다.  
+지금까지 만들었던 뷰들은 매우 간단한 뷰들입니다. 그리고 중복이 되는 부분이 있습니다.
 이러한 뷰는 URL에서 전달 된 매개 변수에 따라 데이터베이스에서 데이터를 가져 오는 것과 템플릿을 로드하고 렌더링 된 템플릿을 리턴하는 기본 웹 개발의 일반적인 경우를 나타냅니다. Django는 이런 매우 일반적인 경우를 위해 **제너릭 뷰 시스템**이라는 지름길을 제공합니다.
 
 제너릭 뷰는 일반적으로 나오는 패턴을 추상화하여 앱을 작성하기 위해 중복된 코드를 작성하지 않아도 됩니다.
@@ -749,12 +749,14 @@ def vote(request, question_id):
 
 DetailView 제너릭 뷰는 URL에서 캡쳐 된 기본 키 값이 "pk"라고 기대하기 때문에 question_id를 제너릭 뷰를 위해 pk로 변경합니다.
 
-기본적으로 DetailView 제너릭 뷰는 ```<app name>/<model name>_detail.html``` 템플릿을 사용합니다. 우리의 경우에는 **polls/question_detail.html**템플릿을 사용할 것입니다.   
-template_name 속성은 Django에게 자동 생성 된 기본 템플릿 이름 대신에 특정 템플릿 이름을 사용하도록 알려주기 위해 사용됩니다. results리스트 뷰에 대해서 template_name을 지정합니다.(결과 뷰와 상세 뷰가 렌더링 될 때 서로 다른 모습을 갖도록 함)  
+기본적으로 DetailView 제너릭 뷰는 ```<app name>/<model name>_detail.html``` 템플릿을 사용합니다. 우리의 경우에는 **polls/question_detail.html**템플릿을 사용할 것입니다.
+template_name 속성은 Django에게 자동 생성 된 기본 템플릿 이름 대신에 특정 템플릿 이름을 사용하도록 알려주기 위해 사용됩니다. results리스트 뷰에 대해서 template_name을 지정합니다.(결과 뷰와 상세 뷰가 렌더링 될 때 서로 다른 모습을 갖도록 함)
 이들이 둘다 동일한 DetailView를 사용하고 있더라도 말이지요.
 
 마찬가지로, ListView 제네릭 뷰는 ```<app name>/<model name>_list.html``` 템플릿을 기본으로 사용합니다. 이미 있는 **polls/index.html** 템플릿을 사용하기 위해 ListView 에 template_name 를 전달했습니다.
 
-코드 수정 전 템플릿에서는 question 및 latest_question_list context 변수가 포함된 context가 값으로 넘겨와 사용되었지만 DetailView의 경우 question 변수가 자동으로 값으로 넘어옵니다.  
+코드 수정 전 템플릿에서는 question 및 latest_question_list context 변수가 포함된 context가 값으로 넘겨와 사용되었지만 DetailView의 경우 question 변수가 자동으로 값으로 넘어옵니다.
 Django 모델을 사용하기 때문에 Django는 context의 이름을 결정할 수 있습니다.
 ListView의 경우 자동 생성 된 컨텍스트 변수는 question_list 입니다. 이것을 바꿔서 사용하려면 context_object_name 속성을 제공하고, 대신에 latest_question_list를 사용하도록 지정하세요.
+
+
